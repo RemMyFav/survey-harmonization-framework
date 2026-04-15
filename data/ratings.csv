@@ -1,6 +1,10 @@
-timestamp,target_dims,generated_text,rating,model_name,prompt
-2026-04-14T05:16:28.392556,"Emotional, Financial",I am stressed and don't know what my financial situation is like.,3,google/flan-t5-base,
-2026-04-14T05:16:28.392556,"Emotional, Financial",I feel more comfortable and calm when I have a clear financial plan.,4,google/flan-t5-base,
-2026-04-14T05:16:28.392556,"Emotional, Financial","I feel the following emotions: Self-care, self-protection, and self-reflection: The following is a self-report",4,google/flan-t5-base,
-2026-04-14T05:16:28.392556,"Emotional, Financial",I feel prepared to deal with the stress of my financial situation.,2,google/flan-t5-base,
-2026-04-14T05:16:28.392556,"Emotional, Financial",I feel the financial aspects of my financial situation and how they affect my mood.,2,google/flan-t5-base,
+2026-04-15T05:03:53.359172,Emotional,I am able to cope with negative emotions like fear and anger.,3,google/flan-t5-base
+2026-04-15T05:03:53.359172,Emotional,I am able to handle emotional stress in a positive and stress-free way.,2,google/flan-t5-base
+2026-04-15T05:03:53.359172,Emotional,"I am able to deal with painful or unpleasant feelings like sadness, fear, and anger.",2,google/flan-t5-base
+2026-04-15T05:03:53.359172,Emotional,I feel very much like I've done a lot of work lately.,1,google/flan-t5-base
+2026-04-15T05:03:53.359172,Emotional,I have been feeling a lot of stress from other people over the past few weeks.,2,google/flan-t5-base
+2026-04-15T05:56:27.285285,Physical,"I've been in an indefinite state of mental health, and I have been in a stable state since I turned 35.",4,google/flan-t5-base
+2026-04-15T05:56:27.285285,Physical,My physical health is mainly a result of the stress that I experience day to day.,4,google/flan-t5-base
+2026-04-15T05:56:27.285285,Physical,I believe in a healthy body and think it's all good.,4,google/flan-t5-base
+2026-04-15T05:56:27.285285,Physical,I want to change my physical health and to be physically healthy.,3,google/flan-t5-base
+2026-04-15T05:56:27.285285,Physical,"I think my physical health is the best, and I want to do well.",3,google/flan-t5-base

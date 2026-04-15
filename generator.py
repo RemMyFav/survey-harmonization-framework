@@ -508,6 +508,89 @@ class SeededQuestionGenerator:
             outputs=collected[:n_questions],
         )
 
+    def collect_stream(
+        self,
+        target_dims: Sequence[str],
+        seed_texts: Sequence[str],
+        *,
+        n_questions: int = 30,
+        existing_texts: Optional[Sequence[str]] = None,
+        min_words: int = 12,
+        ngram_n: int = 3,
+        jaccard_threshold: float = 0.5,
+        batch_size: int = 20,
+        max_new_tokens: int = 32,
+        temperature: float = 0.9,
+        top_p: float = 0.95,
+        max_total_batches: int = 50,
+        require_exact_count: bool = True,
+        progress_callback=None,
+    ) -> GenerationResult:
+        sorted_dims = sorted(target_dims)
+        prompt = self._build_prompt(sorted_dims, seed_texts)
+
+        if existing_texts is None:
+            existing_texts = []
+
+        collected: list[str] = []
+        seen: set[str] = set()
+        base_references = list(seed_texts) + list(existing_texts)
+
+        batch_idx = 0
+        while len(collected) < n_questions:
+            batch_idx += 1
+
+            if batch_idx > max_total_batches:
+                if require_exact_count:
+                    raise RuntimeError(
+                        f"Could not collect {n_questions} valid outputs for {sorted_dims}. "
+                        f"Collected {len(collected)} after {max_total_batches} batches."
+                    )
+                break
+
+            raw_outputs = self.generate(
+                target_dims=sorted_dims,
+                seed_texts=seed_texts,
+                batch_size=batch_size,
+                max_new_tokens=max_new_tokens,
+                temperature=temperature,
+                top_p=top_p,
+            )
+
+            for text in raw_outputs:
+                key = text.lower().strip()
+
+                if not key or key in seen:
+                    continue
+
+                if not self._accept_candidate(
+                    text,
+                    base_references=base_references,
+                    collected=collected,
+                    min_words=min_words,
+                    ngram_n=ngram_n,
+                    jaccard_threshold=jaccard_threshold,
+                ):
+                    continue
+
+                seen.add(key)
+                collected.append(text)
+
+                if progress_callback:
+                    progress_callback(len(collected))
+
+                if len(collected) >= n_questions:
+                    break
+
+            del raw_outputs
+            self._clear_memory()
+
+        return GenerationResult(
+            target_dims=list(sorted_dims),
+            prompt=prompt,
+            outputs=collected[:n_questions],
+        )
+
     def generate_to_df(
         self,
         target_dims: Sequence[str],
