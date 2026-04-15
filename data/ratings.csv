@@ -1,0 +1,6 @@
+timestamp,target_dims,generated_text,rating,model_name,prompt
+2026-04-14T05:16:28.392556,"Emotional, Financial",I am stressed and don't know what my financial situation is like.,3,google/flan-t5-base,
+2026-04-14T05:16:28.392556,"Emotional, Financial",I feel more comfortable and calm when I have a clear financial plan.,4,google/flan-t5-base,
+2026-04-14T05:16:28.392556,"Emotional, Financial","I feel the following emotions: Self-care, self-protection, and self-reflection: The following is a self-report",4,google/flan-t5-base,
+2026-04-14T05:16:28.392556,"Emotional, Financial",I feel prepared to deal with the stress of my financial situation.,2,google/flan-t5-base,
+2026-04-14T05:16:28.392556,"Emotional, Financial",I feel the financial aspects of my financial situation and how they affect my mood.,2,google/flan-t5-base,
